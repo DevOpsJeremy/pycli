@@ -1,0 +1,53 @@
+[build-system]
+requires = [
+  "hatchling >= 1.26",
+  "hatch-requirements-txt >= 0.4.1"
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "pycli"
+version = "0.0.1"
+description = "A command-line tool"
+keywords = ["cli"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+authors = [
+  {name = "Jeremy Watkins", email = "DevOpsJeremy@gmail.com"}
+]
+maintainers = [
+  {name = "Jeremy Watkins", email = "DevOpsJeremy@gmail.com"}
+]
+
+dynamic = ["dependencies"]
+
+[project.urls]
+Homepage = "https://example.com"
+Documentation = "https://example.com/docs"
+Repository = "https://github.com/DevOpsJeremy/pycli"
+Issues = "https://github.com/DevOpsJeremy/pycli/issues"
+Changelog = "https://github.com/DevOpsJeremy/pycli/blob/main/CHANGELOG.md"
+
+[project.scripts]
+pycli = "pycli.cli:pycli"
+
+[tool.hatch.build]
+sources = ["src"]
+
+[tool.hatch.build.targets.wheel]
+include = ["pycli"]
+
+[tool.hatch.build.targets.sdist]
+include = ["pycli", "/requirements.txt"]
+
+[tool.hatch.metadata.hooks.requirements_txt]
+filename = "requirements.txt"
+
+[tool.pytest]
+strict = true
