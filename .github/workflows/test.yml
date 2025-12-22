@@ -4,15 +4,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Test the project
-        run: make test
-      - name: Publish report
-        uses: mikepenz/action-junit-report@v6.0.1
-        if: success() || failure()
-        with:
-          report_paths: '*junit.xml'
+      - name: Run tests
+        uses: ./.github/actions/test
 
   lint:
     runs-on: ubuntu-latest
