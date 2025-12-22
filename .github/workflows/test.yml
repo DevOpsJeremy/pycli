@@ -5,10 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - run: make pre-test
       - run: make test
 
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - run: make pre-lint
       - run: make lint

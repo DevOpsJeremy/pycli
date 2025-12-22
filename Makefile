@@ -1,30 +1,43 @@
+.PHONY: pre-build build install pre-test test pre-lint lint pre-format format clean all publish
 define HEADER
 	@printf "\n-----\n%s\n-----\n\n" "$@"
 endef
 
-build:
+pre-build:
 	$(HEADER)
 	pip install build
+
+build: pre-build
+	$(HEADER)
 	python -m build
 
 install:
 	$(HEADER)
 	pip install .
 
-test:
+pre-test:
 	$(HEADER)
 	pip install pytest .
+
+test: pre-test
+	$(HEADER)
 	pytest
 
-lint:
+pre-lint:
 	$(HEADER)
 	pip install ruff
+
+lint: pre-lint
+	$(HEADER)
 	ruff check
 	ruff format --check
 
-format:
+pre-format:
 	$(HEADER)
 	pip install ruff
+
+format: pre-format
+	$(HEADER)
 	ruff format
 
 clean:
@@ -34,4 +47,4 @@ clean:
 all: clean install test lint
 
 publish: all
-	
+
