@@ -55,4 +55,4 @@ addopts = ["--junit-xml", "pytest.junit.xml", "--github-report"]
 junit_suite_name = "pycli"
 
 [tool.ruff]
-
+output-format = "github"
