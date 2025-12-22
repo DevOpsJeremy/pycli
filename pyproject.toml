@@ -51,3 +51,8 @@ filename = "requirements.txt"
 
 [tool.pytest]
 strict = true
+addopts = ["--junit-xml", "pytest.junit.xml", "--github-report"]
+junit_suite_name = "pycli"
+
+[tool.ruff]
+

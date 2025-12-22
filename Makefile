@@ -17,7 +17,7 @@ install:
 
 pre-test:
 	$(HEADER)
-	pip install pytest .
+	pip install pytest pytest-github-report .
 
 test: pre-test
 	$(HEADER)
@@ -43,6 +43,7 @@ format: pre-format
 clean:
 	$(HEADER)
 	rm -rf dist
+	rm -f *junit.xml
 
 all: clean install test lint
 

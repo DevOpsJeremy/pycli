@@ -4,11 +4,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - run: make test
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Test the project
+        run: |
+          make test
+          ls
 
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - run: make lint
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Lint the project
+        run: make lint
