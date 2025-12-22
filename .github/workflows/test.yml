@@ -3,39 +3,22 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        stage:
+          - test
+          - lint
+          - install
+          - build
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
       - name: Test the project
-        run: make test
+        env:
+          STAGE: ${{ matrix.stage }}
+        run: make $STAGE
       - name: Publish report
         uses: mikepenz/action-junit-report@v6.0.1
         if: success() || failure()
         with:
           report_paths: '*junit.xml'
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Lint the project
-        run: make lint
-
-  install:
-    needs: [test, lint]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Install local package
-        run: make install
-
-  build:
-    needs: [test, lint]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Build package
-        run: make build
