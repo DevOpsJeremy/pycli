@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run tests
-        uses: ./.github/actions/test
+        uses: DevOpsJeremy/test@init
 
   lint:
     runs-on: ubuntu-latest
