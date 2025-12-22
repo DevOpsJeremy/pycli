@@ -1,7 +1,7 @@
 name: Test package
 on: [push]
 jobs:
-  test-package:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
