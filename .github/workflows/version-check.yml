@@ -1,7 +1,7 @@
 name: Validate version
 run-name: Update package version in src/pycli/__init__.py
 on:
-  push:
+  pull_request:
     paths:
       - src/**
       - pyproject.toml
