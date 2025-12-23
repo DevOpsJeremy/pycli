@@ -7,3 +7,5 @@ on:
       - src/**
       - pyproject.toml
       - requirements.txt
+
+jobs: {}

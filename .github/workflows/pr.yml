@@ -6,3 +6,4 @@ on:
       - pyproject.toml
       - requirements.txt
 
+jobs: {}
