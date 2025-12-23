@@ -56,3 +56,4 @@ junit_suite_name = "pycli"
 
 [tool.ruff]
 output-format = "github"
+
