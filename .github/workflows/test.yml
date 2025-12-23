@@ -1,5 +1,5 @@
 name: Test package
-run-name: 'Testing package - ${{ github.event.commits[0].id }}: ${{ github.event.commits[0].message }}'
+run-name: 'Testing package for commit: "${{ github.event.commits[0].message }}"'
 on:
   push:
     branches-ignore:
