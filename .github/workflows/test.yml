@@ -1,3 +1,15 @@
+name: Test package
+on:
+  push:
+    branches-ignore:
+      - main
+    paths: &workflow_paths
+      - src/**
+      - pyproject.toml
+      - requirements.txt
+  pull_request:
+    paths: *workflow_paths
+
 jobs:
   test:
     runs-on: ubuntu-latest
