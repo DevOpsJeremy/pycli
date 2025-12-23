@@ -8,8 +8,8 @@ on:
 #      - src/**
 #      - pyproject.toml
 #      - requirements.txt
-  pull_request:
-    paths: *workflow_paths
+#  pull_request:
+#    paths: *workflow_paths
 
 jobs:
   test:
