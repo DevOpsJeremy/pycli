@@ -4,8 +4,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Run tests
-        uses: DevOpsJeremy/test@init
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Test the project
+        run: make test
+      - name: Publish report
+        uses: mikepenz/action-junit-report@v6.0.1
+        with:
+          report_paths: '*junit.xml'
 
   lint:
     runs-on: ubuntu-latest
