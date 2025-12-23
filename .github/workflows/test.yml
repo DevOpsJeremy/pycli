@@ -1,5 +1,5 @@
 name: Test package
-#run-name: 'Commit: ${{ github.event }}'
+run-name: 'Commit: ${{ github.event }}'
 on:
   push:
     branches-ignore:
