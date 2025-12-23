@@ -1,12 +1,13 @@
 name: Test package
+run-name: 'Commit: ${{ github.event }}'
 on:
   push:
     branches-ignore:
       - main
-    paths: &workflow_paths
-      - src/**
-      - pyproject.toml
-      - requirements.txt
+#    paths: &workflow_paths
+#      - src/**
+#      - pyproject.toml
+#      - requirements.txt
   pull_request:
     paths: *workflow_paths
 

@@ -1,4 +1,5 @@
 name: Validate version
+run-name: Update package version in src/pycli/__init__.py
 on:
   push:
     paths:
@@ -13,5 +14,5 @@ jobs:
     steps:
       - name: Fail workflow
         run: |
-          echo ERROR: The version MUST be updated in __init__.py
+          echo ERROR: The version MUST be updated in src/pycli/__init__.py
           exit 1
