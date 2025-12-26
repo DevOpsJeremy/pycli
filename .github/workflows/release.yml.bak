@@ -1,11 +1,28 @@
 name: Release
 on:
   push:
-    branches:
-      - main
-    paths:
-      - src/**
-      - pyproject.toml
-      - requirements.txt
+#    branches:
+#      - main
+#    paths:
+#      - src/**
+#      - pyproject.toml
+#      - requirements.txt
 
-jobs: {}
+defaults:
+  runs-on: ubuntu-latest
+
+jobs:
+  defaults:
+    container: python:3.13-alpine
+
+  update-version:
+    steps:
+      - name: Install hatch
+        run: pip install hatch
+      - run: cat src/pycli/__init__.py
+      - run: hatch version
+      - run: hatch version patch
+  test:
+    needs: [update-version]
+    steps:
+      - run: cat src/pycli/__init__.py

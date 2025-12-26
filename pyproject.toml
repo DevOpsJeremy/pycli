@@ -7,7 +7,6 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycli"
-version = "0.0.1"
 description = "A command-line tool"
 keywords = ["cli"]
 classifiers = [
@@ -25,7 +24,10 @@ maintainers = [
   {name = "Jeremy Watkins", email = "DevOpsJeremy@gmail.com"}
 ]
 
-dynamic = ["dependencies"]
+dynamic = [
+  "dependencies",
+  "version"
+]
 
 [project.urls]
 Homepage = "https://example.com"
@@ -36,6 +38,9 @@ Changelog = "https://github.com/DevOpsJeremy/pycli/blob/main/CHANGELOG.md"
 
 [project.scripts]
 pycli = "pycli.cli:pycli"
+
+[tool.hatch.version]
+path = "src/pycli/__init__.py"
 
 [tool.hatch.build]
 sources = ["src"]

@@ -8,9 +8,11 @@ on:
       - requirements.txt
       - '!src/pycli/__init__.py'
 
+defaults:
+  runs-on: ubuntu-latest
+
 jobs:
   validate-version:
-    runs-on: ubuntu-latest
     steps:
       - name: Fail workflow
         run: |
