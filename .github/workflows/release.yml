@@ -18,6 +18,26 @@ jobs:
       - run: cat src/pycli/__init__.py
       - run: hatch version
       - run: hatch version patch
+      - run: cat src/pycli/__init__.py
+      - run: |
+          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          echo Before setting envs
+          echo GIT_COMMITTER_NAME: $GIT_COMMITTER_NAME
+          echo GIT_COMMITTER_EMAIL: $GIT_COMMITTER_EMAIL
+          git config user.name
+          git config user.email
+      - run: |
+          echo With envs
+          echo GIT_COMMITTER_NAME: $GIT_COMMITTER_NAME
+          echo GIT_COMMITTER_EMAIL: $GIT_COMMITTER_EMAIL
+          git config user.name
+          git config user.email
+        env:
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
 
   test:
     runs-on: ubuntu-latest
