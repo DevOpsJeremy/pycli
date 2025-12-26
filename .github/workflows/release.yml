@@ -9,10 +9,6 @@ on:
 #      - requirements.txt
 
 jobs:
-  defaults:
-    runs-on: ubuntu-latest
-    container: python:3.13-alpine
-
   update-version:
     runs-on: ubuntu-latest
     steps:
