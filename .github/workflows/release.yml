@@ -22,7 +22,9 @@ jobs:
       - run: cat src/pycli/__init__.py
       - run: which git
       - run: git -h
-      - run: git diff --name-status remotes/origin/main HEAD -- src/pycli/__init__.py
+      - run: |
+          git fetch origin main
+          git diff --name-status remotes/origin/main HEAD -- src/pycli/__init__.py
 
   test:
     runs-on: ubuntu-latest
