@@ -20,6 +20,9 @@ jobs:
       - run: hatch version
       - run: hatch version patch
       - run: cat src/pycli/__init__.py
+      - run: which git
+      - run: git -h
+      - run: git diff HEAD..main src/pycli/__init__.py
 
   test:
     runs-on: ubuntu-latest
