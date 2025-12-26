@@ -12,6 +12,7 @@ jobs:
   update-version:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
       - name: Install hatch
         run: pip install hatch
       - run: cat src/pycli/__init__.py
@@ -22,4 +23,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [update-version]
     steps:
+      - uses: actions/checkout@v6
       - run: cat src/pycli/__init__.py
