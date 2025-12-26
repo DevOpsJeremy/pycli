@@ -24,7 +24,7 @@ jobs:
       - run: git -h
       - run: |
           git fetch origin main
-          git diff --name-status remotes/origin/main HEAD -- src/pycli/__init__.py
+          git diff --name-status main HEAD -- src/pycli/__init__.py
 
   test:
     runs-on: ubuntu-latest
