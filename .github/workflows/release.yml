@@ -1,35 +1,29 @@
 name: Release
 on:
-  push: {}
-#    branches:
-#      - main
-#    paths:
-#      - src/**
-#      - pyproject.toml
-#      - requirements.txt
-#      - '!src/pycli/__init__.py'
+  push:
+    #tags:
+    #  - '*.*.*'
+
+x-defaults: &defaults
+  runs-on: ubuntu-latest
 
 jobs:
-  update-version:
-    runs-on: ubuntu-latest
+  build:
+    <<: *defaults
+    container: python:3.13-alpine
     steps:
-      - uses: actions/checkout@v6
-      - name: Install hatch
-        run: pip install hatch
-      - run: cat src/pycli/__init__.py
-      - run: hatch version
-      - run: hatch version patch
-      - run: cat src/pycli/__init__.py
-      - run: which git
-      - run: git -h
-      - run: |
-          git fetch origin main
-          git branch -la
-          git diff --name-status origin/main HEAD -- src/pycli/__init__.py
+      - run: pip install build
+      - run: python -m build
+      - uses: actions/upload-artifact@v6
+        with:
+          path: dist
 
-  test:
-    runs-on: ubuntu-latest
-    needs: [update-version]
+  release:
+    <<: *defaults
+    needs: [build]
     steps:
       - uses: actions/checkout@v6
-      - run: cat src/pycli/__init__.py
+      - container: githubchangeloggenerator/github-changelog-generator
+        run: github_changelog_generator --help
+      - uses: actions/download-artifact@v7
+#      - uses: softprops/action-gh-release@v2.5.0
