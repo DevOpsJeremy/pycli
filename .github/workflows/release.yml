@@ -12,7 +12,6 @@ jobs:
       - run: 'echo job name: ${{ job.name }}'
       - run: 'echo github: ${{ github }}'
       - run: 'echo vars: ${{ vars }}'
-      - run: 'echo jobs: ${{ jobs }}'
       - run: 'echo steps: ${{ steps }}'
 
   build:
