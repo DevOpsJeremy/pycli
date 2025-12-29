@@ -16,8 +16,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    container:
-      image: python:3.13-alpine
+    container: python:3.13-alpine
     steps:
       - run: pip install build
       - run: python -m build
@@ -30,7 +29,15 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v6
-      - container: githubchangeloggenerator/github-changelog-generator
-        run: github_changelog_generator --help
       - uses: actions/download-artifact@v7
+      - run: |
+          pwd
+          ls -al
+          ls dist -al
 #      - uses: softprops/action-gh-release@v2.5.0
+  changelog:
+    runs-on: ubuntu-latest
+    container: githubchangeloggenerator/github-changelog-generator
+    steps:
+      - run: github_changelog_generator --help
+
