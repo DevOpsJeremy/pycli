@@ -16,7 +16,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    container: python:3.13-alpine
+    container:
+      image: python:3.13-alpine
     steps:
       - run: pip install build
       - run: python -m build
