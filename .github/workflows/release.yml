@@ -4,8 +4,9 @@ on:
     #tags:
     #  - '*.*.*'
 
-defaults: &defaults
-  runs-on: ubuntu-latest
+env:
+  defaults: &defaults
+    runs-on: ubuntu-latest
 
 jobs:
   build:
