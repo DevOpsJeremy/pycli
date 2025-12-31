@@ -32,6 +32,6 @@ jobs:
           path: dist
       - run: |
           echo GITHUB_REPOSITORY: $GITHUB_REPOSITORY
-          echo GITHUB_HEAD_REF: $GITHUB_HEAD_REF
+          echo GITHUB_REF: $GITHUB_REF
       #- uses: softprops/action-gh-release@v2.5.0
 
