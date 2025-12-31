@@ -51,9 +51,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: sudo gem install github_changelog_generator
-      - run: |
-          echo "REF: $REF"
-          github_changelog_generator --since-commit "2017-01-01 10:00:00"
+      - run: >-
+          github_changelog_generator
+          --user $PROJECT_USER
+          --project $PROJECT
+          --since-commit "2017-01-01 10:00:00"
+          --token $GITHUB_TOKEN
         env:
           REF: ${{ github.ref }}
+          PROJECT_USER: ${{ github.repository_owner }}
+          PROJECT: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
