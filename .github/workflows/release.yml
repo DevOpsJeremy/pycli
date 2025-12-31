@@ -51,10 +51,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: sudo gem install github_changelog_generator
+      - run: echo $PROJECT | sed 's/.*\///g'
       - run: >-
           github_changelog_generator
           --user $PROJECT_USER
-          --project $PROJECT
+          --project $(echo $PROJECT | sed 's/.*\///g')
           --since-commit "2017-01-01 10:00:00"
           --token $GITHUB_TOKEN
         env:
