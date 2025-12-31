@@ -50,7 +50,7 @@ jobs:
     #container: githubchangeloggenerator/github-changelog-generator
     steps:
       - uses: actions/checkout@v6
-      - run: gem install github_changelog_generator
+      - run: sudo gem install github_changelog_generator
       - run: |
           echo "REF: $REF"
           github_changelog_generator --since-commit "2017-01-01 10:00:00"
