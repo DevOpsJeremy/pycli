@@ -15,4 +15,10 @@ jobs:
         uses: pypa/hatch@install
       - name: Checkout repository
         uses: actions/checkout@v6
-      - run: hatch version
+      - run: echo "VERSION=$(hatch version)" | tee GITHUB_ENV
+
+  result:
+    needs: [version]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "VERSION: $VERSION"
