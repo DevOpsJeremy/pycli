@@ -1,8 +1,8 @@
 name: Release
 on:
   push:
-    #tags:
-    #  - '*.*.*'
+    tags:
+      - '*.*.*'
 
 jobs:
   build:
@@ -30,8 +30,9 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           path: dist
-      - run: |
-          echo GITHUB_REPOSITORY: $GITHUB_REPOSITORY
-          echo GITHUB_REF_NAME: $GITHUB_REF_NAME
-      #- uses: softprops/action-gh-release@v2.5.0
+      - uses: softprops/action-gh-release@v2.5.0
+        with:
+          files: dist/*
+          generate_release_notes: true
+          make_latest: true
 
