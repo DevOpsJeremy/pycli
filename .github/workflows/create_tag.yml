@@ -28,3 +28,15 @@ jobs:
       - run: echo "VERSION:$VERSION"
         env:
           VERSION: ${{ needs.version.outputs.version }}
+      - name: Create tag
+        uses: actions/github-script@v5
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/$VERSION",
+              sha: context.sha
+            })
