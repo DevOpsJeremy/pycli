@@ -1,4 +1,4 @@
-.PHONY: pre-build build install pre-test test pre-lint lint pre-format format clean all publish
+.PHONY: pre-build build install pre-test test pre-lint lint pre-format format clean all
 define HEADER
 	@printf "\n-----\n%s\n-----\n\n" "$@"
 endef
@@ -46,6 +46,4 @@ clean:
 	rm -f *junit.xml
 
 all: clean install test lint
-
-publish: all
 
