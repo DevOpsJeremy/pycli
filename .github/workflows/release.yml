@@ -38,6 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: actions/download-artifact@v7
+        path: dist
       - run: |
           pwd
           ls -al
@@ -45,9 +46,10 @@ jobs:
       #- uses: softprops/action-gh-release@v2.5.0
   changelog:
     runs-on: ubuntu-latest
-    container: githubchangeloggenerator/github-changelog-generator
+    #container: githubchangeloggenerator/github-changelog-generator
     steps:
       - uses: actions/checkout@v6
+      - run: gem install github_changelog_generator
       - run: |
           echo "REF: $REF"
           github_changelog_generator --since-commit "2017-01-01 10:00:00"
