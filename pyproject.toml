@@ -37,19 +37,19 @@ Issues = "https://github.com/DevOpsJeremy/pycli-template/issues"
 Changelog = "https://github.com/DevOpsJeremy/pycli-template/blob/main/CHANGELOG.md"
 
 [project.scripts]
-pycli-template = "pycli-template.cli:pycli-template"
+pycli-template = "pycli_template.cli:pycli_template"
 
 [tool.hatch.version]
-path = "src/pycli-template/__init__.py"
+path = "src/pycli_template/__init__.py"
 
 [tool.hatch.build]
 sources = ["src"]
 
 [tool.hatch.build.targets.wheel]
-include = ["pycli-template"]
+include = ["pycli_template"]
 
 [tool.hatch.build.targets.sdist]
-include = ["pycli-template", "/requirements.txt"]
+include = ["pycli_template", "/requirements.txt"]
 
 [tool.hatch.metadata.hooks.requirements_txt]
 filename = "requirements.txt"
