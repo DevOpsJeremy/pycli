@@ -22,12 +22,15 @@ jobs:
       - run: |
           pwd
           ls -al
-          ls dist -al
       - run: pip install build
       - run: python -m build
       - uses: actions/upload-artifact@v6
         with:
           path: dist
+      - run: |
+          pwd
+          ls -al
+          ls dist -al
 
   release:
     runs-on: ubuntu-latest
