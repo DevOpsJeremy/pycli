@@ -1,9 +1,11 @@
 name: Release
-run-name: Release $GITHUB_REF_NAME
+run-name: Release ${{ github.ref_name }}
 on:
   push:
+    branches:
+      - init
     tags:
-      - '*.*.*'
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -36,4 +38,3 @@ jobs:
           files: dist/*
           generate_release_notes: true
           make_latest: true
-
