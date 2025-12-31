@@ -21,6 +21,24 @@ jobs:
         with:
           path: dist
 
+  publish:
+    name: Publish to PyPI
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read  # Needed for checkout
+      id-token: write  # Needed for PyPI trusted publishing
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Download artifacts
+        uses: actions/download-artifact@v7
+        with:
+          path: dist
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
   release:
     runs-on: ubuntu-latest
     needs: [build]
