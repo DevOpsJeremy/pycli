@@ -1,4 +1,5 @@
 name: Release
+run-name: Release $GITHUB_REF_NAME
 on:
   push:
     tags:
