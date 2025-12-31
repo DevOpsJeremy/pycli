@@ -5,60 +5,33 @@ on:
     #  - '*.*.*'
 
 jobs:
-  defaults:
-    runs-on: ubuntu-latest
-    steps:
-      - run: 'echo job: ${{ job }}'
-      - run: 'echo job name: ${{ job.name }}'
-      - run: 'echo github: ${{ github }}'
-      - run: 'echo vars: ${{ vars }}'
-      - run: 'echo steps: ${{ steps }}'
-
   build:
     runs-on: ubuntu-latest
     container: python:3.13-alpine
     steps:
-      - uses: actions/checkout@v6
-      - run: |
-          pwd
-          ls -al
-      - run: pip install build
-      - run: python -m build
-      - uses: actions/upload-artifact@v6
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Install build dependency
+        run: pip install build
+      - name: Build the package
+        run: python -m build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v6
         with:
           path: dist
-      - run: |
-          pwd
-          ls -al
-          ls dist -al
 
   release:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v7
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Download artifacts
+        uses: actions/download-artifact@v7
         with:
           path: dist
       - run: |
-          pwd
-          ls -al
-          ls dist -al
+          echo GITHUB_REPOSITORY: $GITHUB_REPOSITORY
+          echo GITHUB_HEAD_REF: $GITHUB_HEAD_REF
       #- uses: softprops/action-gh-release@v2.5.0
-#  changelog:
-#    runs-on: ubuntu-latest
-#    #container: githubchangeloggenerator/github-changelog-generator
-#    steps:
-#      - uses: actions/checkout@v6
-#      - run: sudo gem install github_changelog_generator
-#      - run: echo $PROJECT | sed 's/.*\///g'
-#      - run: >-
-#          github_changelog_generator
-#          --since-commit "2017-01-01 10:00:00"
-#          --token $GITHUB_TOKEN
-#        env:
-#          REF: ${{ github.ref }}
-#          PROJECT_USER: ${{ github.repository_owner }}
-#          PROJECT: ${{ github.repository }}
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#
+
