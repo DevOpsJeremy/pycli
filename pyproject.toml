@@ -6,7 +6,7 @@ requires = [
 build-backend = "hatchling.build"
 
 [project]
-name = "pycli"
+name = "pycli-template"
 description = "A command-line tool"
 keywords = ["cli"]
 classifiers = [
@@ -32,24 +32,24 @@ dynamic = [
 [project.urls]
 Homepage = "https://example.com"
 Documentation = "https://example.com/docs"
-Repository = "https://github.com/DevOpsJeremy/pycli"
-Issues = "https://github.com/DevOpsJeremy/pycli/issues"
-Changelog = "https://github.com/DevOpsJeremy/pycli/blob/main/CHANGELOG.md"
+Repository = "https://github.com/DevOpsJeremy/pycli-template"
+Issues = "https://github.com/DevOpsJeremy/pycli-template/issues"
+Changelog = "https://github.com/DevOpsJeremy/pycli-template/blob/main/CHANGELOG.md"
 
 [project.scripts]
-pycli = "pycli.cli:pycli"
+pycli-template = "pycli-template.cli:pycli-template"
 
 [tool.hatch.version]
-path = "src/pycli/__init__.py"
+path = "src/pycli-template/__init__.py"
 
 [tool.hatch.build]
 sources = ["src"]
 
 [tool.hatch.build.targets.wheel]
-include = ["pycli"]
+include = ["pycli-template"]
 
 [tool.hatch.build.targets.sdist]
-include = ["pycli", "/requirements.txt"]
+include = ["pycli-template", "/requirements.txt"]
 
 [tool.hatch.metadata.hooks.requirements_txt]
 filename = "requirements.txt"
@@ -57,7 +57,7 @@ filename = "requirements.txt"
 [tool.pytest]
 strict = true
 addopts = ["--junit-xml", "pytest.junit.xml", "--github-report"]
-junit_suite_name = "pycli"
+junit_suite_name = "pycli-template"
 
 [tool.ruff]
 output-format = "github"

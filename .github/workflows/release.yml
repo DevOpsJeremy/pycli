@@ -54,7 +54,7 @@ jobs:
           VERSION: ${{ github.ref_name }}
         with:
           body: |
-            See [the release](https://pypi.org/project/pycli/) on PyPI.
+            See [the release](https://pypi.org/project/pycli-template/) on PyPI.
           files: dist/*
           generate_release_notes: true
           make_latest: true

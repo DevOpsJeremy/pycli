@@ -1,1 +1,1 @@
-# pycli
+# pycli-template
