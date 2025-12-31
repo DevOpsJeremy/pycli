@@ -5,7 +5,7 @@ on:
     branches:
       - init
     tags:
-      - 'v*.*.*'
+      - '*.*.*'
 
 jobs:
   build:
