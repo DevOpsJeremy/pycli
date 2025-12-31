@@ -1,0 +1,18 @@
+name: Create tag
+run-name: 'Create tag: ${{ github.event.commits[0].message }}'
+on:
+  push:
+#    branches:
+#      - main
+#    paths:
+#      - src/pycli/__init__.py
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Hatch
+        uses: pypa/hatch@install
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - run: hatch version
