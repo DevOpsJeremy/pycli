@@ -10,17 +10,21 @@ on:
 jobs:
   version:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.VERSION }}
     steps:
       - name: Install Hatch
         uses: pypa/hatch@install
       - name: Checkout repository
         uses: actions/checkout@v6
-      - run: |
-          echo "GITHUB_ENV:$GITHUB_ENV"
-          echo "VERSION=$(hatch version)" | tee "$GITHUB_ENV"
+      - id: get_version
+        run: echo "VERSION=$(hatch version)" | tee -a "$GITHUB_ENV" "$GITHUB_OUTPUT"
+      - run: echo "VERSION:$VERSION"
 
   result:
     runs-on: ubuntu-latest
     needs: [version]
     steps:
       - run: echo "VERSION:$VERSION"
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
