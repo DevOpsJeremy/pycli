@@ -25,14 +25,44 @@ jobs:
     name: Publish to PyPI
     needs: [build]
     runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read  # Needed for checkout
+      id-token: write  # Needed for PyPI trusted publishing
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      - run: echo Publish package distributions to PyPI
+      - name: Download artifacts
+        uses: actions/download-artifact@v7
+        with:
+          path: dist
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  release:
+    name: Create release
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Download artifacts
+        uses: actions/download-artifact@v7
+        with:
+          path: dist
+      - uses: softprops/action-gh-release@v2.5.0
+        with:
+          body: |
+            See [the release](https://pypi.org/project/pycli-template/$VERSION) on PyPI.
+          files: dist/*
+          generate_release_notes: true
+          make_latest: true
 
   install:
-    name: Install newly-published package from PyPI
+    name: Install new package from PyPI
     needs: [publish]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "pip install pycli-template==$VERSION"
+      - run: pip install pycli-template==$VERSION
