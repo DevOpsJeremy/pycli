@@ -5,6 +5,9 @@ on:
     tags:
       - '*.*.*'
 
+env:
+  VERSION: ${{ github.ref_name }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -50,11 +53,16 @@ jobs:
         with:
           path: dist
       - uses: softprops/action-gh-release@v2.5.0
-        env:
-          VERSION: ${{ github.ref_name }}
         with:
           body: |
-            See [the release](https://pypi.org/project/pycli-template/) on PyPI.
+            See [the release](https://pypi.org/project/pycli-template/$VERSION) on PyPI.
           files: dist/*
           generate_release_notes: true
           make_latest: true
+
+  install:
+    name: Install newly-published package from PyPI
+    needs: [publish]
+    runs-on: ubuntu-latest
+    steps:
+      - run: pip install pycli-template==$VERSION
