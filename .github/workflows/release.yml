@@ -55,7 +55,7 @@ jobs:
       - uses: softprops/action-gh-release@v2.5.0
         with:
           body: |
-            See [the release](https://pypi.org/project/pycli-template/$VERSION) on PyPI.
+            See [the release](https://pypi.org/project/pycli-template/${{ env.VERSION }}) on PyPI.
           files: dist/*
           generate_release_notes: true
           make_latest: true
